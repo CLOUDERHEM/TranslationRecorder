@@ -3,6 +3,8 @@ import $ from "jquery";
 import storeUtil from "~src/util/storeUtil";
 import OneRecord from "~src/class/record";
 
+const timeout = 2000;
+
 export const config: PlasmoContentScript = {
     matches: [
         "https://fanyi.baidu.com/*",
@@ -10,7 +12,6 @@ export const config: PlasmoContentScript = {
         "https://fanyi.qq.com/*",
         "https://cn.bing.com/translator/*"]
 };
-
 window.addEventListener("load", () => {
     let url = window.document.documentURI;
     if (url.indexOf(baiduExp) != -1) {
@@ -45,7 +46,7 @@ function baidu() {
             let origin = $("#baidu_translate_input").val().toLowerCase();
             let target = $(".target-output")[0].innerText;
             addOne(origin, target);
-        }, 1500);
+        }, timeout);
     });
 
 }
@@ -58,7 +59,7 @@ function youdao() {
             let origin = $("#inputOriginal").val().toLowerCase();
             let target = $("#transTarget p span")[0].innerText;
             addOne(origin, target);
-        }, 1500);
+        }, timeout);
     });
 }
 
@@ -71,7 +72,7 @@ function tencent() {
             let origin = $(".text-src")[0].innerText;
             let target = $(".text-dst")[0].innerText;
             addOne(origin, target);
-        }, 1500);
+        }, timeout);
     });
 }
 
@@ -84,6 +85,6 @@ function bing() {
             let origin = $("#tta_input_ta").val();
             let target = $("#tta_output_ta").val();
             addOne(origin, target);
-        }, 1500);
+        }, timeout);
     });
 }
