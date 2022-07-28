@@ -40,3 +40,6 @@ keys.json
 
 # typescript
 .tsbuildinfo
+.idea/
+.vscode
+pnpm-lock.yaml
