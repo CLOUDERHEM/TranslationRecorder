@@ -43,3 +43,4 @@ keys.json
 .idea/
 .vscode
 pnpm-lock.yaml
+src/config.tsx

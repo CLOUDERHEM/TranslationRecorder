@@ -1,10 +1,11 @@
 import App from "./App";
-import 'moment/locale/zh-cn';
-import 'antd/dist/antd.css';
+import "moment/locale/zh-cn";
+import "antd/dist/antd.css";
+
 function IndexPopup() {
-  return (
-    <App />
-  );
+    return (
+        <App />
+    );
 }
 
 export default IndexPopup;

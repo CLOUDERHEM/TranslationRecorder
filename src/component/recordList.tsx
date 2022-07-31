@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { List } from "antd";
-import storeUtil from "~src/util/storeUtil";
 import type OneRecord from "~src/class/record";
+import BombUtil from "~src/util/bombUtil";
 
 class RecordList extends Component<any, any> {
 
@@ -16,7 +16,9 @@ class RecordList extends Component<any, any> {
 
 
     init = () => {
-        storeUtil.getRecords().then(e => {
+        BombUtil.getRecords().then(e => {
+            console.error("init");
+            console.error(e);
             this.setState({ dataSource: e });
         });
         setTimeout(() => {
@@ -25,7 +27,6 @@ class RecordList extends Component<any, any> {
 
     componentWillMount() {
         this.init();
-        // storeUtil.deleteAll()
     }
 
     render() {

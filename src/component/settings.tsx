@@ -1,15 +1,15 @@
 import { Component } from "react";
-import { Button, Card, Divider } from "antd";
+import { Button, Divider } from "antd";
 
 import "./index.css";
-import storeUtil from "~src/util/storeUtil";
 import OneRecord from "~src/class/record";
+import bombUtil from "~src/util/bombUtil";
 
 
 class Settings extends Component<any, any> {
 
     flush = () => {
-        storeUtil.deleteAll();
+        bombUtil.deleteAll().then();
     };
 
     render() {
@@ -25,13 +25,13 @@ class Settings extends Component<any, any> {
                 <Divider dashed />
                 Insert a demo record:
                 <Button type="link" onClick={() => {
-                    storeUtil.addRecords(new OneRecord(en[Math.round(Math.random() * 1010) % zh.length],
+                    bombUtil.addRecords(new OneRecord(en[Math.round(Math.random() * 1010) % zh.length],
                         zh[Math.round(Math.random() * 1010) % zh.length], new Date().getTime())).then();
                 }}>Insert</Button>
                 <Divider dashed />
                 Export records as txt:
                 <Button type="link" onClick={() => {
-                    storeUtil.exportAll("export.txt").then();
+                    bombUtil.exportAll("data.json").then();
                 }}>Export</Button>
             </div>
         );

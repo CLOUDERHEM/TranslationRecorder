@@ -1,7 +1,8 @@
 import type { PlasmoContentScript } from "plasmo";
 import $ from "jquery";
-import storeUtil from "~src/util/storeUtil";
 import OneRecord from "~src/class/record";
+import { message } from "antd";
+import BombUtil from "~src/util/bombUtil";
 
 const timeout = 2000;
 
@@ -30,12 +31,13 @@ function addOne(origin, target) {
     if (origin == "" || origin == undefined || target == "" || target == undefined) {
         return;
     }
-    if (origin.length > 10) {
+    if (origin.length > 20) {
         return;
     }
     let data = new OneRecord(origin.trim(), target.trim(), new Date().getTime());
-    console.error(data);
-    storeUtil.addRecords(data).then();
+    console.info(data);
+    message.success(origin).then();
+    BombUtil.addRecords(data).then();
 }
 
 const baiduExp = "fanyi.baidu.com";

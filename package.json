@@ -11,6 +11,7 @@
   "dependencies": {
     "@plasmohq/storage": "^0.8.1",
     "antd": "^4.22.1",
+    "axios": "^0.27.2",
     "jquery": "^3.6.0",
     "plasmo": "0.49.0",
     "react": "18.2.0",
