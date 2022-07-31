@@ -5,28 +5,32 @@ with [`plasmo init`](https://www.npmjs.com/package/plasmo).
 
 This a simple Chrome extension that used in recording the translate history
 
-When  **paste** the text into textArea, the text and the translated will be automatically stored in Chrome
+When  **paste** the text into textArea, text and the translated will be automatically stored in the cloud platform
 
 ### Feature
 
 * auto record
-* chrome storage sync
-* export records to txt file
+* `bomb` storage sync
+* export records to local file
 
 More feats are developing
 
 ### Support
 
-* fanyi.baidu.com
-* fanyi.youdao.com
-* fanyi.qq.com
-* cn.bing.com/translator
+* [fanyi.baidu.com](https://fanyi.baidu.com)
+* [fanyi.youdao.com](https://fanyi.youdao.com)
+* [fanyi.qq.com](https://fanyi.qq.com)
+* [cn.bing.com/translator](https://cn.bing.com/translator)
 
 More web will be added
 
 ## Getting Started
 
-First, run the development server:
+1. First you hava to register a new count in [bomb](https://www.bmob.cn/) for storing the data
+2. Rename the `config.sample.tsx` to `config.tsx`
+3. Get `applicationId` and `restApi` from the bomb web and set it in the `config.tsx`
+
+## Run the development server:
 
 ```bash
 pnpm dev
