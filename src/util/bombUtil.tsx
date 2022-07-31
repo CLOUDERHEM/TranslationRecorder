@@ -1,6 +1,7 @@
 import type OneRecord from "~src/class/record";
 import { BombApiUtil } from "~src/util/bombApi";
 
+const tableName = "Record";
 const BombUtil = {
 
     addRecords: (data: OneRecord) => {
@@ -25,11 +26,20 @@ const BombUtil = {
 
     deleteAll: () => {
         return new Promise(resolve => {
-            let records = BombUtil.getRecords();
+            BombUtil.getRecords().then(res => {
+                let body = {
+                    requests: []
+                };
+                // @ts-ignore
+                res.forEach(e => {
+                    let item = {
+                        "method": "DELETE",
+                        "path": `/1/classes/${tableName}/${e.objectId}`
+                    };
+                    body.requests.push(item);
+                });
 
-            // @ts-ignore
-            records.forEach(item => {
-                BombApiUtil.deleteOne(item.objectId).then();
+                BombApiUtil.deleteAll(body).then();
             });
         });
     },
