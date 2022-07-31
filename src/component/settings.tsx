@@ -4,6 +4,8 @@ import { Button, Divider } from "antd";
 import "./index.css";
 import OneRecord from "~src/class/record";
 import bombUtil from "~src/util/bombUtil";
+import { DeleteOutlined, DownloadOutlined, PlusOutlined } from "@ant-design/icons";
+import { Data } from "~src/class/data";
 
 
 class Settings extends Component<any, any> {
@@ -13,26 +15,30 @@ class Settings extends Component<any, any> {
     };
 
     render() {
-        const en = ["fafafsdf", "asdfasf", "asdfasf", "asdfasf"];
-        const zh = ["手动阀", "阿斯蒂芬", "ad所发生的", "爱上对方是否"];
 
         return (
             <div>
-                Clear all records:
-                <Button type="link" onClick={this.flush}>
-                    Clear
-                </Button>
+                <div>
+                    Insert a demo
+                    <Button type="link" onClick={() => {
+                        let one = Data.recordsDemos[Math.round(Math.random() * 1010) % Data.recordsDemos.length];
+                        bombUtil.addRecords(new OneRecord(one.origin, one.target, one.date)).then();
+                    }}><PlusOutlined /></Button>
+                </div>
                 <Divider dashed />
-                Insert a demo record:
-                <Button type="link" onClick={() => {
-                    bombUtil.addRecords(new OneRecord(en[Math.round(Math.random() * 1010) % zh.length],
-                        zh[Math.round(Math.random() * 1010) % zh.length], new Date().getTime())).then();
-                }}>Insert</Button>
+                <div>
+                    Delete all records
+                    <Button type="link" onClick={this.flush}>
+                        <DeleteOutlined />
+                    </Button>
+                </div>
                 <Divider dashed />
-                Export records as txt:
-                <Button type="link" onClick={() => {
-                    bombUtil.exportAll("data.json").then();
-                }}>Export</Button>
+                <div>
+                    Download all records
+                    <Button type="link" onClick={() => {
+                        bombUtil.exportAll("data.json").then();
+                    }}><DownloadOutlined /></Button>
+                </div>
             </div>
         );
     }

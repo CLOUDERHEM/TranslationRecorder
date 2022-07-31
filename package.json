@@ -9,6 +9,7 @@
     "build": "plasmo build"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@plasmohq/storage": "^0.8.1",
     "antd": "^4.22.1",
     "axios": "^0.27.2",

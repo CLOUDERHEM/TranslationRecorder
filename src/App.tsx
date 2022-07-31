@@ -20,9 +20,6 @@ class App extends Component {
                         <TabPane tab="Setting" key="2">
                             <Settings />
                         </TabPane>
-                        <TabPane tab="About" key="3">
-                            About
-                        </TabPane>
                     </Tabs>
                 </Card>
             </div>
