@@ -34,10 +34,14 @@ function addOne(origin, target) {
     if (origin.length > 20) {
         return;
     }
-    let data = new OneRecord(origin.trim(), target.trim(), new Date().getTime());
-    console.info(data);
+    let data = new OneRecord(origin.trim().toLowerCase(),
+            target.trim().toLowerCase(),
+            new Date().getTime());
+
     message.success(origin).then();
-    BombUtil.addRecords(data).then();
+    BombUtil.addRecords(data).then(() => {
+        console.log(data);
+    });
 }
 
 const baiduExp = "fanyi.baidu.com";
@@ -45,7 +49,7 @@ const baiduExp = "fanyi.baidu.com";
 function baidu() {
     $("#baidu_translate_input").on("paste", () => {
         setTimeout(() => {
-            let origin = $("#baidu_translate_input").val().toLowerCase();
+            let origin = $("#baidu_translate_input").val();
             let target = $(".target-output")[0].innerText;
             addOne(origin, target);
         }, timeout);
