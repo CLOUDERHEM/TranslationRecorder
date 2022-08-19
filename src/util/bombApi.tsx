@@ -2,8 +2,8 @@ import axios from "axios";
 import Config from "~src/config";
 
 const tableName = "Record";
-const url = `https://api2.bmob.cn/1/classes/${tableName}`;
-const batchUrl = "https://api2.bmob.cn/1/batch";
+const url = `https://api2.bmobapp.com/1/classes/${tableName}`;
+const batchUrl = "https://api2.bmobapp.com/1/batch";
 const headers = {
     "X-Bmob-Application-Id": Config.applicationId,
     "X-Bmob-REST-API-Key": Config.restApi,
