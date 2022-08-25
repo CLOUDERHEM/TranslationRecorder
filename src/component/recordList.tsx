@@ -1,8 +1,7 @@
 import { Component } from "react";
-import { Button, List } from "antd";
+import { List, message } from "antd";
 import type OneRecord from "~src/class/record";
 import BombUtil from "~src/util/bombUtil";
-import { DeleteOutlined } from "~node_modules/@ant-design/icons";
 
 class RecordList extends Component<any, any> {
 
@@ -19,8 +18,10 @@ class RecordList extends Component<any, any> {
     init = () => {
         BombUtil.getRecords().then(e => {
             // @ts-ignore
-            e.reverse()
+            e.reverse();
             this.setState({ dataSource: e });
+        }).catch(e => {
+            message.error(e.message).then();
         });
         setTimeout(() => {
         }, 2000);

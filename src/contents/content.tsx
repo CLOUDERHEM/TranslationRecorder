@@ -35,12 +35,13 @@ function addOne(origin, target) {
         return;
     }
     let data = new OneRecord(origin.trim().toLowerCase(),
-            target.trim().toLowerCase(),
-            new Date().getTime());
+        target.trim().toLowerCase(),
+        new Date().getTime());
 
-    message.success(origin).then();
     BombUtil.addRecords(data).then(() => {
-        console.log(data);
+        message.success(origin).then();
+    }).catch(e => {
+        message.error(e.message).then();
     });
 }
 

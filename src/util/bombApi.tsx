@@ -12,46 +12,50 @@ const headers = {
 
 function get() {
 
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
         axios.get(url, {
             headers
         }).then(res => {
             resolve(res.data.results);
         }).catch(e => {
-            console.log(e);
+            reject(e);
         });
     });
 }
 
 function post(data) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
         axios.post(url, JSON.stringify(data), {
             headers
         }).then(res => {
-            console.log(res);
+            console.log(res.data);
         }).catch(e => {
-            console.log(e);
+            reject(e);
         });
     });
 }
 
 function deleteOne(objectId) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
         axios.delete(`${url}/${objectId}`, {
             headers
         }).then(res => {
-            console.log(res);
+            console.log(res.data);
         }).catch(e => {
-            console.log(e);
+            reject(e);
         });
     });
 }
 
 function deleteAll(items) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
         axios.post(batchUrl, JSON.stringify(items), {
             headers
-        }).then();
+        }).then(res => {
+            console.log(res.data);
+        }).catch(e => {
+            reject(e);
+        });
     });
 }
 

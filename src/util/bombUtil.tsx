@@ -5,27 +5,19 @@ const tableName = "Record";
 const BombUtil = {
 
     addRecords: (data: OneRecord) => {
-        return new Promise(resolve => {
-            BombApiUtil.post(data).then();
-        });
+        return BombApiUtil.post(data);
     },
 
     getRecords: () => {
-        return new Promise(resolve => {
-            BombApiUtil.get().then(res => {
-                resolve(res);
-            });
-        });
+        return BombApiUtil.get();
     },
 
     deleteOne: (objectId) => {
-        return new Promise(resolve => {
-            BombApiUtil.deleteOne(objectId).then();
-        });
+        return BombApiUtil.deleteOne(objectId);
     },
 
     deleteAll: () => {
-        return new Promise(resolve => {
+        return new Promise((resolve, reject) => {
             BombUtil.getRecords().then(res => {
                 let body = {
                     requests: []
@@ -40,11 +32,13 @@ const BombUtil = {
                 });
 
                 BombApiUtil.deleteAll(body).then();
+            }).catch(e => {
+                reject(e);
             });
         });
     },
     exportAll: (filename: string) => {
-        return new Promise(resolve => {
+        return new Promise((resolve, reject) => {
             BombApiUtil.get().then(res => {
                 let data = JSON.stringify(res);
                 const element = document.createElement("a");
@@ -54,8 +48,12 @@ const BombUtil = {
                 document.body.appendChild(element);
                 element.click();
                 document.body.removeChild(element);
+            }).catch(e => {
+                reject(e);
             });
+
         });
+
     }
 
 };

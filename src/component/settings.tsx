@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Button, Divider } from "antd";
+import { Button, Divider, message } from "antd";
 
 import "./index.css";
 import OneRecord from "~src/class/record";
@@ -14,16 +14,30 @@ class Settings extends Component<any, any> {
         bombUtil.deleteAll().then();
     };
 
+    insertDemo = () => {
+        let one = Data.recordsDemos[Math.round(Math.random() * 1010) % Data.recordsDemos.length];
+        bombUtil.addRecords(new OneRecord(one.origin, one.target, one.date)).then(() => {
+            message.success(`demo: ${one.origin} => ${one.target}`).then();
+        }).catch(e => {
+            message.error(e.message).then();
+        });
+    };
+
+    exportAll = () => {
+        bombUtil.exportAll("data.json").catch(e => {
+            message.error(e.message).then();
+        });
+    };
+
     render() {
 
         return (
             <div>
                 <div>
                     Insert a demo
-                    <Button type="link" onClick={() => {
-                        let one = Data.recordsDemos[Math.round(Math.random() * 1010) % Data.recordsDemos.length];
-                        bombUtil.addRecords(new OneRecord(one.origin, one.target, one.date)).then();
-                    }}><PlusOutlined /></Button>
+                    <Button type="link" onClick={this.insertDemo}>
+                        <PlusOutlined />
+                    </Button>
                 </div>
                 <Divider dashed />
                 <div>
@@ -35,12 +49,13 @@ class Settings extends Component<any, any> {
                 <Divider dashed />
                 <div>
                     Download all records
-                    <Button type="link" onClick={() => {
-                        bombUtil.exportAll("data.json").then();
-                    }}><DownloadOutlined /></Button>
+                    <Button type="link" onClick={this.exportAll}>
+                        <DownloadOutlined />
+                    </Button>
                 </div>
             </div>
-        );
+        )
+            ;
     }
 }
 
