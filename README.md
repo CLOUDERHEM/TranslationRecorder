@@ -10,7 +10,7 @@ When  **paste** the text into textArea, text and the translated will be automati
 ### Feature
 
 * auto record
-* `bomb` storage sync
+* storage sync
 * export records to local file
 
 More feats are developing
@@ -26,9 +26,11 @@ More web will be added
 
 ## Getting Started
 
-1. First you hava to register a new count in [bomb](https://www.bmob.cn/) for storing the data
-2. Rename the `config.sample.tsx` to `config.tsx`
-3. Get `applicationId` and `restApi` from the bomb web and set it in the `config.tsx`
+1. First you hava to register a new count in [Leancloud](https://leancloud.app/) for storing the data
+2. create a LeanStorage app 
+3. `Data storage -> data -> create class`, sames to `src/class/record.tsx`
+4. Rename the `config.sample.tsx` to `config.tsx`
+5. Get `id`, `key` and `serviceUrl` from the Leancloud and set them into the `config.tsx`
 
 ## Run the development server:
 
