@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { List, message } from "antd";
 import type OneRecord from "~src/class/record";
-import BombUtil from "~src/util/bombUtil";
+import StorageUtil from "~src/util/storageUtil";
 
 class RecordList extends Component<any, any> {
 
@@ -16,7 +16,7 @@ class RecordList extends Component<any, any> {
 
 
     init = () => {
-        BombUtil.getRecords().then(e => {
+        StorageUtil.getRecords().then(e => {
             // @ts-ignore
             e.reverse();
             this.setState({ dataSource: e });

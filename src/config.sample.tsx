@@ -1,6 +1,7 @@
-const Config = {
-    applicationId:'xxxx',
-    restApi:'xxxx'
+const config = {
+    appId: "xxx",
+    appKey: "xxx",
+    serverURL: "https://xxx"
 };
 
-export default Config;
+export default config;

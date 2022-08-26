@@ -12,7 +12,7 @@ class App extends Component {
 
         return (
             <div>
-                <Card size="default" title="Translate Recorder"  style={{ width: 350 }}>
+                <Card size="default" title="Translate Recorder"  style={{ width: 300 }}>
                     <Tabs defaultActiveKey="1">
                         <TabPane tab="Main" key="1">
                             <RecordList />

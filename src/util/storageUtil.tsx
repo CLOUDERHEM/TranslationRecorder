@@ -1,24 +1,25 @@
 import type OneRecord from "~src/class/record";
-import { BombApiUtil } from "~src/util/bombApi";
+
+import { StorageApi } from "~src/util/storageApi";
 
 const tableName = "Record";
-const BombUtil = {
+const StorageUtil = {
 
     addRecords: (data: OneRecord) => {
-        return BombApiUtil.post(data);
+        return StorageApi.post(data);
     },
 
     getRecords: () => {
-        return BombApiUtil.get();
+        return StorageApi.get();
     },
 
     deleteOne: (objectId) => {
-        return BombApiUtil.deleteOne(objectId);
+        return StorageApi.deleteOne(objectId);
     },
 
     deleteAll: () => {
         return new Promise((resolve, reject) => {
-            BombUtil.getRecords().then(res => {
+            StorageUtil.getRecords().then(res => {
                 let body = {
                     requests: []
                 };
@@ -31,7 +32,8 @@ const BombUtil = {
                     body.requests.push(item);
                 });
 
-                BombApiUtil.deleteAll(body).then();
+                StorageApi.deleteAll(body).then();
+                resolve(res)
             }).catch(e => {
                 reject(e);
             });
@@ -39,7 +41,7 @@ const BombUtil = {
     },
     exportAll: (filename: string) => {
         return new Promise((resolve, reject) => {
-            BombApiUtil.get().then(res => {
+            StorageApi.get().then(res => {
                 let data = JSON.stringify(res);
                 const element = document.createElement("a");
                 element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(data));
@@ -48,6 +50,7 @@ const BombUtil = {
                 document.body.appendChild(element);
                 element.click();
                 document.body.removeChild(element);
+                resolve(res);
             }).catch(e => {
                 reject(e);
             });
@@ -58,4 +61,4 @@ const BombUtil = {
 
 };
 
-export default BombUtil;
+export default StorageUtil;

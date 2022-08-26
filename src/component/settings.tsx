@@ -3,7 +3,7 @@ import { Button, Divider, message } from "antd";
 
 import "./index.css";
 import OneRecord from "~src/class/record";
-import bombUtil from "~src/util/bombUtil";
+import StorageUtil from "~src/util/storageUtil";
 import { DeleteOutlined, DownloadOutlined, PlusOutlined } from "@ant-design/icons";
 import { Data } from "~src/class/data";
 
@@ -11,12 +11,12 @@ import { Data } from "~src/class/data";
 class Settings extends Component<any, any> {
 
     flush = () => {
-        bombUtil.deleteAll().then();
+        StorageUtil.deleteAll().then();
     };
 
     insertDemo = () => {
         let one = Data.recordsDemos[Math.round(Math.random() * 1010) % Data.recordsDemos.length];
-        bombUtil.addRecords(new OneRecord(one.origin, one.target, one.date)).then(() => {
+        StorageUtil.addRecords(new OneRecord(one.origin, one.target, one.date)).then(() => {
             message.success(`demo: ${one.origin} => ${one.target}`).then();
         }).catch(e => {
             message.error(e.message).then();
@@ -24,7 +24,7 @@ class Settings extends Component<any, any> {
     };
 
     exportAll = () => {
-        bombUtil.exportAll("data.json").catch(e => {
+        StorageUtil.exportAll("data.json").catch(e => {
             message.error(e.message).then();
         });
     };

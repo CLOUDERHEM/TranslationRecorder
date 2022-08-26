@@ -2,11 +2,11 @@ import axios from "axios";
 import Config from "~src/config";
 
 const tableName = "Record";
-const url = `https://api2.bmobapp.com/1/classes/${tableName}`;
-const batchUrl = "https://api2.bmobapp.com/1/batch";
+const url = `${Config.serverURL}/1.1/classes/${tableName}`;
+const batchUrl = `${Config.serverURL}/1.1/batch`;
 const headers = {
-    "X-Bmob-Application-Id": Config.applicationId,
-    "X-Bmob-REST-API-Key": Config.restApi,
+    "X-LC-Id": Config.appId,
+    "X-LC-Key": Config.appKey,
     "Content-Type": "application/json"
 };
 
@@ -28,6 +28,7 @@ function post(data) {
         axios.post(url, JSON.stringify(data), {
             headers
         }).then(res => {
+            resolve(res.data)
             console.log(res.data);
         }).catch(e => {
             reject(e);
@@ -40,6 +41,7 @@ function deleteOne(objectId) {
         axios.delete(`${url}/${objectId}`, {
             headers
         }).then(res => {
+            resolve(res.data)
             console.log(res.data);
         }).catch(e => {
             reject(e);
@@ -52,6 +54,7 @@ function deleteAll(items) {
         axios.post(batchUrl, JSON.stringify(items), {
             headers
         }).then(res => {
+            resolve(res.data)
             console.log(res.data);
         }).catch(e => {
             reject(e);
@@ -59,6 +62,6 @@ function deleteAll(items) {
     });
 }
 
-export const BombApiUtil = {
+export const StorageApi = {
     get, post, deleteOne, deleteAll
 };

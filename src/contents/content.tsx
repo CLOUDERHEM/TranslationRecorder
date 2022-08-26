@@ -2,7 +2,7 @@ import type { PlasmoContentScript } from "plasmo";
 import $ from "jquery";
 import OneRecord from "~src/class/record";
 import { message } from "antd";
-import BombUtil from "~src/util/bombUtil";
+import StorageUtil from "~src/util/storageUtil";
 
 const timeout = 2000;
 
@@ -38,7 +38,7 @@ function addOne(origin, target) {
         target.trim().toLowerCase(),
         new Date().getTime());
 
-    BombUtil.addRecords(data).then(() => {
+    StorageUtil.addRecords(data).then(() => {
         message.success(origin).then();
     }).catch(e => {
         message.error(e.message).then();
